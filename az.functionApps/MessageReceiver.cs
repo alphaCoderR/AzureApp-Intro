@@ -11,6 +11,7 @@ namespace az.functionApps
         [QueueOutput("outqueue", Connection = "AzureWebJobsStorage")]
         public string[] Messages { get; set; }
         public HttpResponseData HttpResponse { get; set; }
+        
     }
 
     public class MessageReceiver
@@ -36,12 +37,12 @@ namespace az.functionApps
             var response = req.CreateResponse(HttpStatusCode.OK);
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
 
-            response.WriteString("Welcome to Azure Functions!");
+            response.WriteString("Azure Functions Triggered Successfully");
 
             return new MultiResponse()
             {
                 
-                Messages = new string[] { msg },
+                Messages = [msg],
                 HttpResponse = response
             };
         }
