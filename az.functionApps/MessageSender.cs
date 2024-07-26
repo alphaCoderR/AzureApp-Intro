@@ -3,6 +3,7 @@ using System.Text;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using RandConsoleApp;
 
 namespace az.functionApps
 {
@@ -29,7 +30,8 @@ namespace az.functionApps
                 "application/json");
 
             client.Send(reqMsg);
-
+            // Adding a external dependency to azure function and calling it
+            GFG.sampleFunc();
             _logger.LogInformation($"Message successfully sent to the queue");
 
             if (myTimer.ScheduleStatus is not null)
